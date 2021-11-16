@@ -1,0 +1,512 @@
+// GLOBAL/EVERYTHING STYLE
+*{ padding: 0; margin: 0; }
+
+// CREATE VARIABLES
+:root{
+    
+    // BODY
+    --body-background-color: lightgray;
+
+    // HEADER
+    --header-background-color: #34a0a4;
+    --header-button-color: #1e6091;
+    --header-button-color-hover: #1a759f;
+
+    // TASK
+    --task-background-color: #76c893;
+
+    // FOOTER
+    --footer-background-color: #1e6091;
+
+    // OTHERS
+    --transition-delay: 0.6s;
+}
+
+// ---------------------------------------------------
+
+// HTML ELEMENT FOR SOME REASON
+html{
+
+    // SMOTH SCROOL WHEN CLICK ON GO TOP BUTTON
+    scroll-behavior: smooth;
+
+}
+
+// BODY
+body{
+    
+    background-color: var(--body-background-color);
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    transition: var(--transition-delay) ease;
+
+}
+
+// BODY DARK MODE
+body.dark{
+    --body-background-color: #333;
+}
+
+// ---------------------------------------------------
+
+// CONTAINER
+.container{
+
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: 0 0 10px 10px rgba(0,0,0,0.1);
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
+}
+
+// ---------------------------------------------------
+
+// GO TOP BUTTON
+.go-top{
+
+    z-index: 1;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    right: -100px;
+    margin: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: .8;
+    transition: var(--transition-delay) ease;
+
+    // DRAW ARROW ^
+    &::after{
+        
+        content: "";    
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: whitesmoke solid;    
+        border-width: 8px 8px 0 0;
+        transform: rotate(-45deg);
+        right: 11px;
+        bottom: 5px;
+
+    }
+
+    // WHEN MOUSE HOVER ON THE BUTTON
+    &:hover{
+
+        opacity: 1;
+
+    }
+}
+
+
+// ---------------------------------------------------
+
+// HEADER
+header {
+    
+    background-color: var(--header-background-color);
+    height: 100px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    transition: var(--transition-delay) ease;
+
+    border-bottom: 1px solid black;
+
+    // INPUTS
+    label{
+        
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        // TODO TITLE
+        h1{
+            
+            margin-right: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+
+        }
+
+        // TEXT INPUT
+        input {
+            
+            outline: 0;
+            padding: 10px 20px;
+            width: 60%;
+            border: 0;
+            border-radius: 50px 0 0 50px;
+            background-color: white;
+
+            transition: var(--transition-delay) ease;
+
+            // WHEN THE INPUT TEXT IS FOCUSED
+            &:focus{
+
+                box-shadow: 0 0 10px 5px rgba(46, 17, 17, 0.1);
+
+            }
+            
+        }
+
+        // BUTTON + (ADD)
+        button {
+
+            cursor: pointer;
+            background-color: var(--header-button-color);
+            padding: 10px 20px;
+            border: 0;
+            border-radius: 0 50px 50px 0;
+            color: black;
+            
+            transition: var(--transition-delay) ease;
+
+            // WHEN HOVER ON THE BUTTON
+            &:hover{
+                
+                background-color: var(--header-button-color-hover);
+
+            }
+
+        }
+
+        // CHANGE THEME BUTTON
+        .change-theme {
+
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 10px;
+            margin-left: 10px;
+            top: 0;
+            right: 0;
+            color: black;
+
+            transition: var(--transition-delay) ease;
+
+            // HOVER ON CHANGE THEME BUTTON
+            &:hover{
+                cursor: pointer;
+                background-color: black;
+                color: white;
+            }
+
+            // SUN SVG
+            .sun{
+                display: block;
+            }
+
+            // MOON SVG
+            .moon{
+                display: none;
+            }
+
+        }
+
+    }
+
+}
+
+// HEADER DARK MODE
+body.dark header{
+    
+    --header-background-color: #111111;
+    --header-button-color: #2b2b2b;
+    --header-button-color-hover: #3d3d3d;
+
+    // BUTTON + DARK MODE
+    button{
+        
+        color: white;
+
+    }
+
+    // TEXT INPUT DARK MODE
+    input{
+
+        background-color: gray;
+        color: white;
+        
+        // FOCUS TEXT INPUT DARK MODE
+        &:focus{
+            box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.1);
+        }
+
+    }
+
+    // CHANGE THEME BUTTON DARK MODE
+    .change-theme{
+        
+        color: white;
+
+        // HOVER THEME BUTTON DRK MODE
+        &:hover{
+
+            background-color: white;
+            color: black;
+
+        }
+
+
+
+    }
+
+}
+
+// ---------------------------------------------------
+
+// TASKS CONTAINER
+.tasks{
+
+    // THE WHOLE LIST
+    ul{
+        
+        // TASK LIST
+        li{
+
+            list-style: none;
+            background-color: var(--task-background-color);
+
+            transition: var(--transition-delay) ease;
+            
+            // TASK + CHECKBOX + DELETE BUTTON CONTAINER
+            span{
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid black;
+                padding: 20px;
+
+                transition: var(--transition-delay) ease;
+                
+                // TASK TEXT CONTAINER
+                .text-task{
+
+                    display: flex;
+                    flex-direction: row;
+
+                    // TEXT
+                    p{
+                        margin-left: 10px;
+                    }
+
+                    // CHECKBOX
+                    input{
+                        appearance: none;
+                        background-color: white;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        opacity: 1;
+                        
+                        transition: var(--transition-delay) ease;
+
+                        &:hover{
+
+                            opacity: 0.5;
+
+                        }
+                        
+                        &:checked{
+                            
+                            background-color: cornflowerblue;
+                          
+                            // DRAW CORRECT SYMBOL
+                            &::after{
+                                
+                                content: "";
+                                border: white solid;
+                                width: 8px;
+                                height: 5px;
+                                position: absolute;
+                                border-width: 3px 3px 0 0;
+                                margin-left: 2.5px;
+                                margin-top: 2px;
+                                transform: rotate(135deg);
+
+                            }
+                        }
+                    }
+                }
+
+                // BREAK WORDS TO FIT ON SMALL SCREENS AND IN THE CONTAINER
+                p{
+                    word-break: break-all;
+                }
+
+                // DELETE BUTTON
+                button{
+
+                    border: 0;
+                    padding: 10px;
+                    cursor: pointer;
+                    border-radius: 10px;
+                    margin-left: 20px;
+                    background-color: transparent;
+
+                    // HOVER BUTTON DELETE
+                    &:hover{
+                        
+                        background-color: darkred;
+                        color: white;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+}
+
+// TASK CONTAINER DARK MODE
+body.dark .tasks{
+
+    // TASK LIST DARK MODE
+    li{
+        background-color: gray;
+        color: white;
+    }
+
+    // TEXT CONTAINER DARK MODE
+    .text-task{
+        
+        // CHECKBOX DARK MODE
+        input{
+            
+            background-color: var(--body-background-color);
+
+            // CHECKED CHECKBOX DARK MODE
+            &:checked{
+                
+                background-color: white;
+
+                &::after{
+                                
+                    content: "";
+                    border: black solid;
+                    width: 8px;
+                    height: 5px;
+                    position: absolute;
+                    border-width: 3px 3px 0 0;
+                    margin-left: 2.5px;
+                    margin-top: 2px;
+                    transform: rotate(140deg);
+
+                }
+            }
+
+        }
+
+    }
+
+}
+
+// LINE-THROUGH ON TASK TEXT
+.cut-word{
+    
+    opacity: 0.5;
+    user-select: none;
+    text-decoration: line-through;
+
+}
+
+// ---------------------------------------------------
+
+// FOOTER
+footer{
+
+    background-color: var(--footer-background-color);
+    margin: 0 auto;
+    width: 80%;
+    
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+
+    box-shadow: 0 0 10px 10px rgba(0,0,0,0.1);
+
+    transition: color var(--transition-delay) ease;
+
+    // FOOTER TEXT
+    p{
+
+        padding: 20px 0;
+        text-align: center;
+
+        // FOOTER LINKS
+        a{
+            
+            text-decoration: none;
+            color: white;
+
+            // WHEN HOVER ON LINK
+            &:hover{
+
+                text-decoration: underline;
+
+            }
+        }
+
+    }
+
+
+}
+
+// FOOTER DARK MODE
+body.dark footer{
+    background-color: var(--body-background-color);
+}
+
+// ---------------------------------------------------
+
+// MEDIA QUERY / SMALL SCREENS
+
+@media (max-width: 900px){
+    
+    // CONTAINER ON SMALL SCREENS
+    .container{
+
+        width: 100%;
+        border: 0;
+
+        header{
+            
+            h1{
+                
+                display: none;
+
+            }
+            input{
+
+                margin-left: 20px;
+
+            }
+
+        }
+
+    }
+
+    // FOOTER
+    footer{
+        
+        width: 100%;
+
+    }
+
+}
