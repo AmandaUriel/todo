@@ -19,6 +19,7 @@ function $( element, All = false ){
 // VARIABLES
 const toggleTheme = $(".change-theme"); // GET THE TOGGLE THEME CLASS
 const body = $("body"); // GET BODY ELEMENT
+let inputArray = new Array(); // CREATE AN ARRAY
 
 let lightTheme = true; // SET LIGHT THEME TO TRUE/FALSE
 
@@ -66,7 +67,7 @@ const headerHeight = header.scrollHeight;// GET HEADER HEIGHT
 
 // WHILE THE USER IS SCROLLING THE PAGE:
 window.onscroll = () => {
-    // IF SCROOLY IS GRATER THEN HEADER:
+    // IF SCROLLY IS GRATER THEN HEADER:
     if( window.scrollY > headerHeight ){
         // MAKE GO TOP BUTTON VISIBLE
         goTop.style = "right: 0;"
@@ -106,97 +107,148 @@ addButton.onclick = () => {
 
 }
 
-
 // CREATE <li> TASK
 function createTask(){
 
+    
     // IF INPUT IS NOT EMPTY:
-    if( inputElement.value ){
+    if ( inputElement.value ) {
 
-        // IF THE TEXT ADDED BE:
-        if( inputElement.value  === "GIASFCLFUBREHBER" ){
-
-            // SET THIS SONG FROM UNDERTALE
-            let audio = new Audio("snd_dumbvictory.wav");
-            audio.play();// PLAY THE SONG
-        
-        }
-
-
-        // CREATE ELEMENTS
-        const liElement = document.createElement("li") // <li>
-        const spanElement = document.createElement("span") // <span>
-        const pElement = document.createElement("p") // <p>
-        const btnElement = document.createElement("button") // <button>
-        const divElement = document.createElement("div"); // <div></div>
-        const checkBtn = document.createElement("input"); // <input></input>
-
-        // GIVE THINGS FOR THE CREATED ELEMENTS
-
-        // <p>
-        pElement.innerHTML = inputElement.value;// GIVE TEXT INPUT TO <p>
-        // APPEND TRASH SVG TO THE BUTTON
-        btnElement.innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-    </svg>`;
-
-        // <input> CHECKBOX
-        checkBtn.setAttribute("id", "check-task");// GIVE #check-task ID TO <input>
-        checkBtn.type = "checkbox";// SET <input> TYPE TO CHECKBOX
-        
-        // <div> CONTAINER
-        divElement.appendChild(checkBtn);// APPEND CHECKBOX TO <div>
-        divElement.appendChild(pElement);// APPEND <p> TASK TEXT TO <div>
-        divElement.setAttribute("class", "text-task");// SET .text-task CLASS TO <div>
-
-        // <span> CONTAINER
-        spanElement.appendChild(divElement);// APPEND <div> CONTAINER TO <span>
-        spanElement.appendChild(btnElement);// APPED <button> TRASH TO <span>
-        
-        // <li>
-        liElement.appendChild(spanElement);// APPEND <span> TO <li>
-
-        // <ul>
-        ulElement.appendChild(liElement);// APPEND <li> TASK CONTAINER TO <ul> MAIN CONTAINER TASK
-
-        // IF FOR SOME REASON THE TEXT HAS MORE THAN 100 CHARACTERS:
-        if( inputElement.value.length > 100 ){
-
-            document.title = "HOW?? - TODO";// HOW????
-
-        }
-
-        // IF FOR MORE WEIRD REASONS THE TEXT HAS MORE THAN 300 CHARACTERS:
-        if( inputElement.value.length > 300 ){
-
-            document.title = "YOU BROKE IT FOR NOTHING! - TODO";// WTF?
-
-        }
-
-
-        // CLEAR TEXT INPUT, MAKE IT EMPTY
-        inputElement.value = "";
-
-        // IF CLICK ON THE TRASH CAN, REMOVE THE <li>
-        btnElement.onclick = function(){
+        // CHECK IF THE ITEM ALREADY EXISTS
+        if( inputArray.indexOf(inputElement.value) !== -1 ) { // IF IT ALREADY EXISTS
             
-            // REMOVE LI ELEMENT FROM UL ELEMENT
-            ulElement.removeChild(liElement);
+            // EASTER EGGS LOL
+            if (( inputElement.value === "e.g. WAKE UP 6 AM" ) || ( inputElement.value === "TODO" )) {
+                
+                console.log(`COPYPASTA`);
 
+            }else if ( inputElement.value === 'COPYPASTA') {
+                
+                console.log(`Funny uh?`);
 
-        }
+            } else if ( ( inputElement.value === "30082002") || ( inputElement.value === "30/08/2002" ) || ( inputElement.value === "3008" ) || ( inputElement.value === "30 august" ) || ( inputElement.value === "30 august 2002" ) ) {
+                
+                console.log(' HAPPY BIRTHDAY TO MEEEEEE, HAPPY BIRTHDAY TO MEEEE, HAAPPY BIIIIRTHAY TO THE BEST PERSON IN THE WORLD... HAPPY BIRTHDAY TO MEEEEEEEEEEEEE, yeah, I made it, also thank you for remmembering my birthday uwu')
 
-        // CLICK ON CHECKBOX
-        checkBtn.onclick = () => {
+            } else {
+                
+                // IF IT'S JUST A TASK THAT ALREADY EXISTS, PRINT THIS:
+                console.log(`HOLY KRIS, THIS TASK '${inputElement.value}' ALREADY EXISTS!`);
+
+            }
+
+            // IF THE TEXT ADDED BE:
+            if ( inputElement.value  === "GIASFCLFUBREHBER" ) {
+
+                // SET THIS SONG FROM UNDERTALE
+                let audio = new Audio("snd_dumbvictory.wav");
+                audio.play();// PLAY THE SONG
             
-            // TOGGLE "LINE-THOUGH" EFFECT ON TEXT TASK
-            pElement.classList.toggle("cut-word");
+            }
+
+            // WARNING USER THAT THIS TASK ALREADY EXIST
+            inputElement.value = "TASK ALREADY EXISTS"; 
+
+        } else if ( inputElement.value === "TASK ALREADY EXISTS" ) {
             
-            // MAKE THE CONTAINER HALF VISIBLE
-            liElement.classList.toggle("cut-word");
+            // DO NOTHING
 
-        }
+        } else { // IN CASE IT'S A NEW TASK, THEN ADD IT!
 
-    }
+            // IF THE TEXT ADDED BE:
+            if ( inputElement.value  === "GIASFCLFUBREHBER" ) {
 
-}
+                // SET THIS SONG FROM UNDERTALE
+                let audio = new Audio("snd_dumbvictory.wav");
+                audio.play();// PLAY THE SONG
+            
+            }
+
+            // ADD IT TO AN ARRAY
+            inputArray.push(inputElement.value);
+            //console.log(inputArray);
+
+
+            // CREATE ELEMENTS
+            const liElement = document.createElement("li") // <li>
+            const spanElement = document.createElement("span") // <span>
+            const pElement = document.createElement("p") // <p>
+            const btnElement = document.createElement("button") // <button>
+            const divElement = document.createElement("div"); // <div></div>
+            const checkBtn = document.createElement("input"); // <input></input>
+
+            // GIVE THINGS FOR THE CREATED ELEMENTS
+
+            // <p>
+            pElement.innerHTML = inputElement.value;// GIVE TEXT INPUT TO <p>
+            // APPEND TRASH SVG TO THE BUTTON
+            btnElement.innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+        </svg>`;
+
+            // <input> CHECKBOX
+            checkBtn.setAttribute("id", "check-task");// GIVE #check-task ID TO <input>
+            checkBtn.type = "checkbox";// SET <input> TYPE TO CHECKBOX
+            
+            // <div> CONTAINER
+            divElement.appendChild(checkBtn);// APPEND CHECKBOX TO <div>
+            divElement.appendChild(pElement);// APPEND <p> TASK TEXT TO <div>
+            divElement.setAttribute("class", "text-task");// SET .text-task CLASS TO <div>
+
+            // <span> CONTAINER
+            spanElement.appendChild(divElement);// APPEND <div> CONTAINER TO <span>
+            spanElement.appendChild(btnElement);// APPED <button> TRASH TO <span>
+            
+            // <li>
+            liElement.appendChild(spanElement);// APPEND <span> TO <li>
+
+            // <ul>
+            ulElement.appendChild(liElement);// APPEND <li> TASK CONTAINER TO <ul> MAIN CONTAINER TASK
+
+            // IF FOR SOME REASON THE TEXT HAS MORE THAN 100 CHARACTERS:
+            if( inputElement.value.length > 100 ){
+
+                document.title = "HOW?? - TODO";// HOW????
+
+            }
+
+            // IF FOR MORE WEIRD REASONS THE TEXT HAS MORE THAN 300 CHARACTERS:
+            if( inputElement.value.length > 300 ){
+
+                document.title = "YOU BROKE IT FOR NOTHING! - TODO";// WTF?
+
+            }
+
+
+            // CLEAR TEXT INPUT, MAKE IT EMPTY
+            inputElement.value = "";
+
+            // IF CLICK ON THE TRASH CAN, REMOVE THE <li>
+            btnElement.onclick = function(){
+                
+                // REMOVE THE VALUE TO THE ARRAY
+                inputArray.splice( inputArray.indexOf(pElement.innerHTML), 1 );
+                //console.log( inputArray );
+
+                // REMOVE LI ELEMENT FROM UL ELEMENT
+                ulElement.removeChild(liElement);
+
+
+            }
+
+            // CLICK ON CHECKBOX
+            checkBtn.onclick = () => {
+                
+                // TOGGLE "LINE-THOUGH" EFFECT ON TEXT TASK
+                pElement.classList.toggle("cut-word");
+                
+                // MAKE THE CONTAINER HALF VISIBLE
+                liElement.classList.toggle("cut-word");
+
+            }
+
+        }// END "ELSE" IN CASE THERE'S NO ARRAY EQUAL THE OLD ONE YOU CHOOSE
+
+    }// end main if
+
+}// enf function

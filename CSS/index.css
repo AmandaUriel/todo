@@ -5,21 +5,62 @@
 
 :root {
   --body-background-color: lightgray;
-  --header-background-color: #34a0a4;
-  --header-button-color: #1e6091;
-  --header-button-color-hover: #1a759f;
-  --task-background-color: #76c893;
-  --footer-background-color: #1e6091;
-  --transition-delay: 0.6s;
+  --header-background-color: #274472;
+  --header-button-color: #41729F;
+  --header-button-color-hover: #5885AF;
+  --task-background-color: #C3E0E5;
+  --footer-background-color: #5885AF;
+  --transition-delay: 0.5s;
+}
+
+body ::-webkit-input-placeholder {
+  color: gray;
+  -webkit-transition: var(--transition-delay) ease;
+  transition: var(--transition-delay) ease;
+}
+
+body :-ms-input-placeholder {
+  color: gray;
+  -webkit-transition: var(--transition-delay) ease;
+  transition: var(--transition-delay) ease;
+}
+
+body ::-ms-input-placeholder {
+  color: gray;
+  -webkit-transition: var(--transition-delay) ease;
+  transition: var(--transition-delay) ease;
+}
+
+body ::placeholder {
+  color: gray;
+  -webkit-transition: var(--transition-delay) ease;
+  transition: var(--transition-delay) ease;
+}
+
+body.dark ::-webkit-input-placeholder {
+  color: whitesmoke;
+}
+
+body.dark :-ms-input-placeholder {
+  color: whitesmoke;
+}
+
+body.dark ::-ms-input-placeholder {
+  color: whitesmoke;
+}
+
+body.dark ::placeholder {
+  color: whitesmoke;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--body-background-color);
-  font-family: 'Courier New', Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-transition: var(--transition-delay) ease;
@@ -75,6 +116,7 @@ body.dark {
 header {
   background-color: var(--header-background-color);
   height: 100px;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,8 +165,8 @@ header label input {
 }
 
 header label input:focus {
-  -webkit-box-shadow: 0 0 10px 5px rgba(46, 17, 17, 0.1);
-          box-shadow: 0 0 10px 5px rgba(46, 17, 17, 0.1);
+  -webkit-box-shadow: 0 0 10px 5px rgba(46, 17, 17, 0.2);
+          box-shadow: 0 0 10px 5px rgba(46, 17, 17, 0.2);
 }
 
 header label button {
@@ -150,8 +192,13 @@ header label .change-theme {
   top: 0;
   right: 0;
   color: black;
-  -webkit-transition: var(--transition-delay) ease;
-  transition: var(--transition-delay) ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header label .change-theme:hover {
@@ -280,6 +327,13 @@ body.dark header .change-theme:hover {
   border-radius: 10px;
   margin-left: 20px;
   background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .tasks ul li span button:hover {
@@ -331,8 +385,8 @@ footer {
   border-bottom: 1px solid black;
   -webkit-box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
-  -webkit-transition: color var(--transition-delay) ease;
-  transition: color var(--transition-delay) ease;
+  -webkit-transition: var(--transition-delay) ease;
+  transition: var(--transition-delay) ease;
 }
 
 footer p {
